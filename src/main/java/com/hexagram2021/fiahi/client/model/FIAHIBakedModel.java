@@ -2,18 +2,24 @@ package com.hexagram2021.fiahi.client.model;
 
 import com.hexagram2021.fiahi.common.handler.ItemStackFoodHandler;
 import com.hexagram2021.fiahi.common.item.capability.IFrozenRottenFood;
+import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.datafixers.util.Pair;
 import net.minecraft.client.multiplayer.ClientLevel;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.block.model.BakedQuad;
 import net.minecraft.client.renderer.block.model.ItemOverrides;
 import net.minecraft.client.renderer.block.model.ItemTransforms;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.resources.model.BakedModel;
+import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.Tag;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.BlockAndTintGetter;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraftforge.client.model.data.IModelData;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
@@ -95,5 +101,46 @@ public record FIAHIBakedModel(BakedModel original, BakedModel frozen1, BakedMode
 			};
 		}
 		return this.original;
+	}
+
+	//Forge
+	@Override
+	public List<BakedQuad> getQuads(@Nullable BlockState state, @Nullable Direction side, Random rand, IModelData extraData) {
+		return this.original.getQuads(state, side, rand, extraData);
+	}
+
+	@Override
+	public boolean useAmbientOcclusion(BlockState state) {
+		return this.original.useAmbientOcclusion(state);
+	}
+
+	@Override
+	public boolean doesHandlePerspectives() {
+		return this.original.doesHandlePerspectives();
+	}
+
+	@Override
+	public BakedModel handlePerspective(ItemTransforms.TransformType cameraTransformType, PoseStack poseStack) {
+		return this.original.handlePerspective(cameraTransformType, poseStack);
+	}
+
+	@Override
+	public IModelData getModelData(BlockAndTintGetter level, BlockPos pos, BlockState state, IModelData modelData) {
+		return this.original.getModelData(level, pos, state, modelData);
+	}
+
+	@Override
+	public TextureAtlasSprite getParticleIcon(IModelData data) {
+		return this.original.getParticleIcon(data);
+	}
+
+	@Override
+	public boolean isLayered() {
+		return this.original.isLayered();
+	}
+
+	@Override
+	public List<Pair<BakedModel, RenderType>> getLayerModels(ItemStack itemStack, boolean fabulous) {
+		return this.original.getLayerModels(itemStack, fabulous);
 	}
 }

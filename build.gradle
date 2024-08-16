@@ -128,14 +128,15 @@ repositories {
 }
 
 dependencies {
-    minecraft 'net.minecraftforge:forge:1.18.2-40.2.0'
+    minecraft 'net.minecraftforge:forge:1.18.2-40.2.21'
 
     annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
 
-    implementation fg.deobf("curse.maven:cold_sweat-506194:5633773")
+    implementation fg.deobf("curse.maven:cold_sweat-506194:5634899")
     runtimeOnly fg.deobf("curse.maven:jade-324717:4575623")
     runtimeOnly fg.deobf("mezz.jei:jei-1.18.2:9.7.1.255")
     runtimeOnly fg.deobf("curse.maven:spark-361579:4505375")
+    runtimeOnly fg.deobf("curse.maven:create-328085:4625533")       //For issue #6
     //runtimeOnly fg.deobf("curse.maven:biomancy-492939:5035331")   //For issue #7
 }
 
