@@ -28,7 +28,7 @@ public class IceBoxBlockEntityMixin {
 			if (iceboxTE.ticksExisted % 20 == 0) {
 				boolean hasItemStacks = false;
 
-				for(int itemFuel = 1; itemFuel < IceboxBlockEntity.SLOTS; ++itemFuel) {
+				for(int itemFuel: BoilerBlockEntity.WATERSKIN_SLOTS) {
 					ItemStack itemStack = iceboxTE.getItem(itemFuel);
 					if (canBeFrozenRotten(itemStack)) {
 						hasItemStacks = true;
@@ -47,7 +47,7 @@ public class IceBoxBlockEntityMixin {
 			} else if(iceboxTE.ticksExisted % 4 == 1) {
 				boolean hasItemStacks = false;
 
-				for(int itemFuel = 1; itemFuel < BoilerBlockEntity.SLOTS; ++itemFuel) {
+				for(int itemFuel: BoilerBlockEntity.WATERSKIN_SLOTS) {
 					ItemStack itemStack = iceboxTE.getItem(itemFuel);
 					if(itemStack.getItem() == FIAHIItems.FOOD_POUCH.get()) {
 						CompoundTag nbt = itemStack.getOrCreateTag();
